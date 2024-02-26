@@ -158,9 +158,9 @@ class ProductController extends Controller
 
         $locationData = $product->data;
         $data = json_decode($locationData, true);
-        $locationCounts = [];
 
         // LOCATION CATEGORY
+        $locationCounts = [];
         foreach ($data['data'] as $productDetail) {
             $location = $productDetail['location'];
 
@@ -184,7 +184,6 @@ class ProductController extends Controller
 
         // PRICE CATEGORY
         $groupedPrices = [];
-
         foreach ($data['data'] as $item) {
             $price = $item['price'];
             $group = '';
@@ -207,7 +206,6 @@ class ProductController extends Controller
         }
 
         $formattedPriceGroupData = [];
-
         foreach ($groupedPrices as $group => $items) {
             $formattedPriceGroupData[] = [
                 'price_group' => $group,
@@ -219,7 +217,6 @@ class ProductController extends Controller
 
         // PRICE LOCATION CATEGORY
         $formattedPriceLocationGroupData = [];
-
         foreach ($data['data'] as $item) {
             $location = $item['location'];
             $price = $item['price'];
