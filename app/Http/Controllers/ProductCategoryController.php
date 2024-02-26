@@ -190,7 +190,13 @@ class ProductCategoryController extends Controller
     {
         $productCategory = ProductCategory::findOrFail($id);
 
-        $productCategory->delete();
+        try {
+            $productCategory->delete();
+        } catch (Exception $e) {
+            return redirect()
+                ->route('product-category.index')
+                ->with('error', 'Data Kategori Produk gagal dihapus.');
+        }
 
         return redirect()
             ->route('product-category.index')

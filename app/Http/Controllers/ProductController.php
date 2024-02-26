@@ -339,8 +339,13 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);
-
-        $product->delete();
+        try {
+            $product->delete();
+        } catch (Exception $e) {
+            return redirect()
+                ->route('product.index')
+                ->with('error', 'Data Produk gagal dihapus.');
+        }
 
         return redirect()
             ->route('product.index')
